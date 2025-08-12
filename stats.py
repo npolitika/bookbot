@@ -12,10 +12,10 @@ def get_charcount(words_string):
                charcount[letter] = 1         
     return charcount
 
-def charcount_dict_to_sorted_list(char_dict):
-    def sort_on(items_for_sort):
-        return items_for_sort['num']
+def sort_on(items_for_sort):
+    return items_for_sort['num']
 
+def charcount_dict_to_sorted_list(char_dict):
     new_list = []
     for key, value in char_dict.items():
         new_items = dict(char=key, num=value)

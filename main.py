@@ -1,28 +1,34 @@
-from stats import get_wordcount, get_charcount, charcount_dict_to_sorted_list as char_dict_sort
+from stats import (
+    get_wordcount as get_num_words,
+    get_charcount as get_chars_dict,
+    charcount_dict_to_sorted_list as char_dict_sort
+)
+   
+def main():
+    book_path = "books/frankenstein.txt"
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
+    chars_dict = get_chars_dict(text)
+    chars_sorted_list = char_dict_sort(chars_dict)
+    print_report(book_path, num_words, chars_sorted_list)
 
 def get_book_text(filepath):
     with open(filepath) as booktext:
         book_text = booktext.read()
         return book_text
     
-def main():
+def print_report(book_path, num_words, chars_sorted_list):
     print("============ BOOKBOT ============")
-    book_path = "books/frankenstein.txt"
     print(f"Analyzing book found at {book_path}...")
-    book_contents = get_book_text(book_path)
-    wordcount = get_wordcount(book_contents)
-#    print(f'{wordcount} words found in the document')
     print("----------- Word Count ----------")
-    print(f"Found {wordcount} total words")
-    charactercount = get_charcount(book_contents)
-#    print(charactercount)
+    print(f"Found {num_words} total words")
     print("--------- Character Count -------")
-    sorted = char_dict_sort(charactercount)
-    for item in sorted:
+    for item in chars_sorted_list:
         char_value = item["char"]
         num_value = item["num"]
         if char_value.isalpha():
             print(f"{char_value}: {num_value}")
-    print("============= END ===============")
+    print("============= END ===============")    
 
-main()
+if __name__ == '__main__':
+    main()
