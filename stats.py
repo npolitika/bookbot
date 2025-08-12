@@ -2,7 +2,6 @@ def get_wordcount(book_text):
     words = book_text.split()
     return len(words)
 
-
 def get_charcount(words_string):
     words_lower = words_string.lower()
     charcount = {}
@@ -10,5 +9,19 @@ def get_charcount(words_string):
            if letter in charcount:
                charcount[letter] += 1
            else:
-               charcount[letter] = 1
+               charcount[letter] = 1         
     return charcount
+
+def charcount_dict_to_sorted_list(char_dict):
+    def sort_on(items_for_sort):
+        return items_for_sort['num']
+
+    new_list = []
+    for key, value in char_dict.items():
+        new_items = dict(char=key, num=value)
+        new_list.append(new_items)
+
+    new_list.sort(reverse=True, key=sort_on)
+    return new_list
+#print(charcount)
+
